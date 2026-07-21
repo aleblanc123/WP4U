@@ -3,7 +3,7 @@ package com.example.wp4u.ui.categories
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.wp4u.data.ServiceLocator
-import com.example.wp4u.model.Category
+import com.example.wp4u.database.model.Category
 
 /**
  * Exposes the list of vision board categories to [CategoriesActivity].
