@@ -20,6 +20,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.categories.CategoriesActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.board.BoardActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.categories.CategoriesActivity" />
+
     </application>
 
 </manifest>

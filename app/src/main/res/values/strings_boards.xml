@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Strings for the categories + board screens (Yvan's slice).
+         Kept in a separate file to avoid merge conflicts with teammates'
+         strings.xml edits; Android merges all files in res/values. -->
+    <string name="categories_title">Vision Boards</string>
+    <string name="empty_board">No images yet.\nTap + to add your first inspiration.</string>
+    <string name="add_image">Add image</string>
+    <string name="board_image">Board image</string>
+    <string name="upload_failed">Couldn\'t add that image. Please try again.</string>
+</resources>
