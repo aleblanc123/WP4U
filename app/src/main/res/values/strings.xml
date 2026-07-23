@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">WP4U</string>
+    <string name="login">Login</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="create_account">Create Account</string>
+    <string name="enter_username">Enter Username</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="logout">Logout</string>
+    <string name="already_login">Already have an account?</string>
+    <string name="no_account">Don\'t have an account yet?</string>
+    <string name="sign_up">Sign Up</string>
 </resources>
