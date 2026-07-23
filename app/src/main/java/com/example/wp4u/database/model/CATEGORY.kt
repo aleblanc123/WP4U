@@ -5,6 +5,11 @@ import androidx.room3.Entity
 import androidx.room3.PrimaryKey
 import java.sql.Time
 
+/**
+ * Category that holds images.
+ *
+ */
+
 @Entity(tableName = "CATEGORY")
 data class Category(
     @PrimaryKey(autoGenerate = true) val categoryPK: Int = 0,
