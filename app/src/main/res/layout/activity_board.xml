@@ -31,9 +31,17 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/imagesRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:clipToPadding="false"
             android:padding="8dp" />
+
+        <Button
+            android:id="@+id/signOut"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/sign_out" />
 
     </LinearLayout>
 

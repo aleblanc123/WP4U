@@ -1,6 +1,8 @@
 package com.example.wp4u.ui.board
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
@@ -11,6 +13,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.example.wp4u.R
+import com.example.wp4u.data.AuthRepository
+import com.example.wp4u.database.WP4UDatabase
+import com.example.wp4u.ui.accounts.CreateAccount
+import com.example.wp4u.ui.accounts.Login
 
 /**
  * Shows the images inside one category and lets the user add more.
@@ -74,6 +80,19 @@ class BoardActivity : AppCompatActivity() {
                     ActivityResultContracts.PickVisualMedia.ImageOnly
                 )
             )
+        }
+
+
+        val database = WP4UDatabase.getInstance(this)
+        val authRepository = AuthRepository(database.UserDAO())
+
+        val signoutBtn = findViewById<Button>(R.id.signOut)
+
+        signoutBtn.setOnClickListener {
+            authRepository.signOut()
+            val intent = Intent(this@BoardActivity, Login::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 }
