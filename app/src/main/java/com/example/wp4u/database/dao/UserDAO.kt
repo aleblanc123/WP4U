@@ -28,9 +28,15 @@ interface UserDAO {
     @Query("SELECT * FROM USER WHERE id=:id")
     suspend fun getUserById(id: Int): User? //Gets single user account (by id).
 
-    @Query("SELECT * FROM USER WHERE username=:username AND password_hash:=password_hash")
-    suspend fun getUserByUserPass(id: Int): User? //Gets single user account (by username and password).
+    @Query("SELECT * FROM USER WHERE username=:username AND password_hash=:passwordHash")
+    suspend fun getUserByUserPass(username: String, passwordHash: String): User? //Gets single user account (by username and password).
 
-    @Query("SELECT * FROM USER WHERE email=:email AND password_hash:=password_hash")
-    suspend fun getUserByEmailPass(id: Int): User? //Gets single user account (by email and password).
+    @Query("SELECT * FROM USER WHERE email=:email AND password_hash=:passwordHash")
+    suspend fun getUserByEmailPass(email: String, passwordHash: String): User? //Gets single user account (by email and password).
+
+    @Query("Select * FROM USER WHERE email=:email")
+    suspend fun checkIfEmailExists(email: String): User? //Checks if email is already registered to account in database
+
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    suspend fun insert(user: User): Long
 }

@@ -10,7 +10,7 @@ class AuthRepository(private val userDao: UserDAO) {
         private set
 
     suspend fun createAccount(username: String, email: String, password: String): Result<User> {
-        val existing = userDao.getUserByEmail(email)
+        val existing = userDao.checkIfEmailExists(email)
         if (existing != null) {
             return Result.failure(Exception("Account already exists"))
         }
@@ -23,11 +23,13 @@ class AuthRepository(private val userDao: UserDAO) {
         )
 
         userDao.insert(newUser)
+        currentUser = newUser
         return Result.success(newUser)
     }
 
     suspend fun signIn(username: String, password: String): Result<User> {
-        val user = userDao.getUserByUsername(username)
+        val passwordHash = hashPassword(password)
+        val user = userDao.getUserByUserPass(username, passwordHash)
             ?: return Result.failure(Exception("No account found"))
 
         return if (user.passwordHash == hashPassword(password)) {

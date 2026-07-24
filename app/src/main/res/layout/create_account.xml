@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="48dp"
-    tools:context=".AccountCreation">
+    tools:context=".ui.accounts.CreateAccount">
 
     <EditText
         android:id="@+id/createEmail"

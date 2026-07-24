@@ -9,4 +9,5 @@
     <string name="already_login">Already have an account?</string>
     <string name="no_account">Don\'t have an account yet?</string>
     <string name="sign_up">Sign Up</string>
+    <string name="sign_out">Sign Out</string>
 </resources>

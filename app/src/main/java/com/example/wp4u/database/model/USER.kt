@@ -16,5 +16,5 @@ data class User(
     @ColumnInfo(name = "username") val username: String,
     @ColumnInfo(name = "email") val email: String,
     @ColumnInfo(name = "password_hash") val passwordHash: String,
-    @ColumnInfo(name = "created_at") val createdAt: Time
+    @ColumnInfo(name = "created_at") val createdAt: Long
 )
