@@ -7,10 +7,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wp4u.R
-import com.example.wp4u.model.Category
+import com.example.wp4u.database.model.Category
 
 /**
- * Adapter for the category browsing list. Uses ListAdapter + DiffUtil so
+ * Adapter for the Category browsing list. Uses ListAdapter + DiffUtil so
  * the RecyclerView animates and updates efficiently when data changes.
  */
 class CategoryAdapter(
@@ -19,7 +19,7 @@ class CategoryAdapter(
 
     object Diff : DiffUtil.ItemCallback<Category>() {
         override fun areItemsTheSame(oldItem: Category, newItem: Category) =
-            oldItem.id == newItem.id
+            oldItem.categoryPK == newItem.categoryPK
 
         override fun areContentsTheSame(oldItem: Category, newItem: Category) =
             oldItem == newItem
@@ -30,9 +30,9 @@ class CategoryAdapter(
 
         private val nameText: TextView = itemView.findViewById(R.id.categoryName)
 
-        fun bind(category: Category) {
-            nameText.text = category.name
-            itemView.setOnClickListener { onCategoryClick(category) }
+        fun bind(Category: Category) {
+            nameText.text = Category.categoryName
+            itemView.setOnClickListener { onCategoryClick(Category) }
         }
     }
 

@@ -1,8 +1,7 @@
 package com.example.wp4u.data
 
 import androidx.lifecycle.LiveData
-import com.example.wp4u.model.BoardImage
-import com.example.wp4u.model.Category
+import com.example.wp4u.database.model.*
 
 /**
  * The contract between the UI layer and the data layer.
@@ -15,8 +14,8 @@ import com.example.wp4u.model.Category
  *   @Query("SELECT * FROM categories ORDER BY name")
  *   fun getCategories(): LiveData<List<Category>>
  *
- *   @Query("SELECT * FROM images WHERE categoryId = :categoryId ORDER BY position")
- *   fun getImagesForCategory(categoryId: Long): LiveData<List<BoardImage>>
+ *   @Query("SELECT * FROM images WHERE categoryPK = :categoryPK ORDER BY position")
+ *   fun getImagesForCategory(categoryPK: Int): LiveData<List<BoardImage>>
  *
  *   @Insert
  *   suspend fun insertImage(image: BoardImage)
@@ -27,11 +26,11 @@ interface BoardRepository {
     fun getCategories(): LiveData<List<Category>>
 
     /** Images inside one category, ordered by position. */
-    fun getImagesForCategory(categoryId: Long): LiveData<List<BoardImage>>
+    fun getImagesForCategory(categoryPK: Int): LiveData<List<Image>>
 
     /**
      * Adds an image (already copied into internal storage) to the end
      * of the given category's board.
      */
-    suspend fun addImage(categoryId: Long, filePath: String)
+    suspend fun addImage(categoryPK: Int, filePath: String)
 }

@@ -50,4 +50,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.0")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.0")
     implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation("androidx.room3:room3-runtime:3.0.0")
+    implementation ("androidx.room:room-ktx:3.0.0")
+    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:3.0.0")
 }

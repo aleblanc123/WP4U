@@ -27,8 +27,8 @@ class CategoriesActivity : AppCompatActivity() {
         val adapter = CategoryAdapter { category ->
             startActivity(
                 Intent(this, BoardActivity::class.java).apply {
-                    putExtra(BoardActivity.EXTRA_CATEGORY_ID, category.id)
-                    putExtra(BoardActivity.EXTRA_CATEGORY_NAME, category.name)
+                    putExtra(BoardActivity.EXTRA_CATEGORY_ID, category.categoryPK)
+                    putExtra(BoardActivity.EXTRA_CATEGORY_NAME, category.categoryName)
                 }
             )
         }

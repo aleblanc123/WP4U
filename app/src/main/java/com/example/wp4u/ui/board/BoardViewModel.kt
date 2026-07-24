@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.wp4u.data.ImageStorage
 import com.example.wp4u.data.ServiceLocator
-import com.example.wp4u.model.BoardImage
+import com.example.wp4u.database.model.Image
 import kotlinx.coroutines.launch
 
 /**
@@ -25,7 +25,7 @@ class BoardViewModel(
 
     private val repository = ServiceLocator.repository
 
-    val images: LiveData<List<BoardImage>> =
+    val images: LiveData<List<Image>> =
         repository.getImagesForCategory(categoryId)
 
     private val _uploadError = MutableLiveData<Boolean>()
