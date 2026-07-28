@@ -17,7 +17,7 @@ import androidx.room3.Query
 @Dao
 interface UserDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertUser(user: User): Int //Adds newly created user account.
+    suspend fun insertUser(user: User): Long //Adds newly created user account.
 
     @Update
     suspend fun updateUser(user: User) //Updates pre-existing user account.
@@ -25,7 +25,7 @@ interface UserDAO {
     @Delete
     suspend fun deleteUser(user: User) //Deletes a user account.
 
-    @Query("SELECT * FROM USER WHERE id=:id")
+    @Query("SELECT * FROM USER WHERE userPK=:id")
     suspend fun getUserById(id: Int): User? //Gets single user account (by id).
 
     @Query("SELECT * FROM USER WHERE username=:username AND password_hash=:passwordHash")

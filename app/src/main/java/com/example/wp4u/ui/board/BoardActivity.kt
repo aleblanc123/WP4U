@@ -35,7 +35,7 @@ class BoardActivity : AppCompatActivity() {
     private val viewModel: BoardViewModel by viewModels {
         BoardViewModel.Factory(
             application,
-            intent.getLongExtra(EXTRA_CATEGORY_ID, -1L)
+            intent.getIntExtra(EXTRA_CATEGORY_ID, -1)
         )
     }
 
