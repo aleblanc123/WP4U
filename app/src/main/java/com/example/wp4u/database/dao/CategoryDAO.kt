@@ -17,16 +17,16 @@ import androidx.room3.Update
 @Dao
 interface CategoryDAO {
     @Insert (onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertCategory(category: Category): Int //Adds new category that holds related images.
+    suspend fun insertCategory(category: Category): Long //Adds new category that holds related images.
 
     @Update
     suspend fun updateCategory(category: Category) //Updates pre-existing category information.
 
-    @Query ("SELECT category_name FROM CATEGORY WHERE id=:id")
-    suspend fun getCategoryNameById(id: Int): Category? //Gets single category name (by id).
+    @Query ("SELECT category_name FROM CATEGORY WHERE categoryPK=:id")
+    suspend fun getCategoryNameById(id: Int): String? //Gets single category name (by id).
 
-    @Query ("SELECT description FROM CATEGORY WHERE id=:id")
-    suspend fun getCategoryDescById(id: Int): Category? //Gets single category description (by id).
+    @Query ("SELECT description FROM CATEGORY WHERE categoryPK=:id")
+    suspend fun getCategoryDescById(id: Int): String? //Gets single category description (by id).
 
     @Query ("SELECT * FROM CATEGORY")
     suspend fun getAllCategories(): Array<Category> //Gets all category names (array).

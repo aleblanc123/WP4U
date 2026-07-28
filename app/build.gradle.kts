@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -51,6 +52,5 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.0")
     implementation("com.github.bumptech.glide:glide:4.16.0")
     implementation("androidx.room3:room3-runtime:3.0.0")
-    implementation ("androidx.room:room-ktx:3.0.0")
-    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:3.0.0")
+    ksp("androidx.room3:room3-compiler:3.0.0")
 }

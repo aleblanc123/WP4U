@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
  */
 class BoardViewModel(
     application: Application,
-    categoryId: Long
+    categoryId: Int
 ) : AndroidViewModel(application) {
 
     private val repository = ServiceLocator.repository
@@ -53,7 +53,7 @@ class BoardViewModel(
     /** Factory so the ViewModel can receive the category id at creation. */
     class Factory(
         private val application: Application,
-        private val categoryId: Long
+        private val categoryId: Int
     ) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(modelClass: Class<T>): T =

@@ -18,12 +18,12 @@ import java.sql.Time
         ForeignKey(
             entity = User::class,
             childColumns = ["user_fk"],
-            parentColumns = ["user_pk"]
+            parentColumns = ["userPK"]
         ),
         ForeignKey(
             entity = Category::class,
             childColumns = ["category_fk"],
-            parentColumns = ["category_pk"]
+            parentColumns = ["categoryPK"]
     )])
 data class Image(
     @PrimaryKey(autoGenerate = true) val imagePK: Int = 0,
@@ -31,5 +31,5 @@ data class Image(
     @ColumnInfo(name = "category_fk") val categoryFK: Int,
     @ColumnInfo(name = "file_path") val filePath: String,
     @ColumnInfo(name = "display_order") val displayOrder: Int, // will support reorder feature in pt 4 (0-based)
-    @ColumnInfo(name = "uploaded_at") val uploadedAt: Time,
+    @ColumnInfo(name = "uploaded_at") val uploadedAt: Long,
 )
