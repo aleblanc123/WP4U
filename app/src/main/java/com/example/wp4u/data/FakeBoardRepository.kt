@@ -39,20 +39,20 @@ class FakeBoardRepository : BoardRepository {
             MutableLiveData(imagesByCategory.getOrPut(categoryPK) { mutableListOf() }.toList())
         }
 
-    override suspend fun addImage(categoryFK: Int, filePath: String) {
-        val list = imagesByCategory.getOrPut(categoryFK) { mutableListOf() }
+    override suspend fun addImage(categoryPK: Int, filePath: String) {
+        val list = imagesByCategory.getOrPut(categoryPK) { mutableListOf() }
         list.add(
             Image(
                 imagePK = nextImageId++.toInt(),
-                categoryFK = categoryFK,
+                categoryFK = categoryPK,
                 filePath = filePath,
                 displayOrder = list.size,
-                userFK = TODO(),
-                uploadedAt = TODO()
+                userFK = 1, // placeholder until Room repo wires real signed-in user id
+                uploadedAt = System.currentTimeMillis(),
             )
         )
         // postValue because addImage is called from a background coroutine
-        imagesLiveByCategory.getOrPut(categoryFK) { MutableLiveData() }
+        imagesLiveByCategory.getOrPut(categoryPK) { MutableLiveData() }
             .postValue(list.toList())
     }
 }
