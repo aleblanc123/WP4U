@@ -6,7 +6,7 @@ About the Project
 
 WP4U provides pre-made categories such as Wedding Dress Inspo, Food, and Churches, and lets users upload their own images into each one. Users can replace or delete images at any time to keep their boards current. Each user has their own account, and all account details and images are stored locally in a Room (SQLite) database on the device.
 
-This project was built as part of CST8319 – Software Development Project using an Agile Scrum workflow.
+This project was built as part of CST8319 - Software Development Project using an Agile Scrum workflow.
 
 Features
 User sign-up and sign-in to save data across sessions
@@ -33,9 +33,9 @@ Database Structure
 
 The app uses three core entities:
 
-USER — stores account credentials (user_id, username, email, password_hash, created_at)
-CATEGORY — holds pre-made vision board categories (category_id, category_name, description)
-IMAGE — links users and categories to uploaded images (image_id, user_id, category_id, file_path, display_order, uploaded_at)
+USER - stores account credentials (user_id, username, email, password_hash, created_at)
+CATEGORY - holds pre-made vision board categories (category_id, category_name, description)
+IMAGE - links users and categories to uploaded images (image_id, user_id, category_id, file_path, display_order, uploaded_at)
 
 A user can upload many images (one-to-many), and a category can contain many images (one-to-many).
 
@@ -70,7 +70,7 @@ Reggie B.	README and project documentation
 Mohamed (Wangdong)	Sample images / data population
 Project Status
 
-In development — initial release focuses on core functionality. Future plans include user-created categories and expanded features once the base version is complete.
+In developmet: initial release focuses on core functionality. Future plans include user-created categories and expanded features once the base version is complete.
 
 License
 
