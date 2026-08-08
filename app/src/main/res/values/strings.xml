@@ -10,4 +10,11 @@
     <string name="no_account">Don\'t have an account yet?</string>
     <string name="sign_up">Sign Up</string>
     <string name="sign_out">Sign Out</string>
+    <string name="image_options">Image options</string>
+    <string name="replace_image">Replace image</string>
+    <string name="delete_image">Delete image</string>
+    <string name="delete_image_confirm">Remove this image from the board? The picture will be deleted.</string>
+    <string name="board_image_description">Vision board image</string>
+    <string name="drag_handle_glyph">≡</string>
+    <string name="drag_handle_description">Drag to reorder</string>
 </resources>
