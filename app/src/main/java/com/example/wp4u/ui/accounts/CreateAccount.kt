@@ -9,8 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.wp4u.R
-import com.example.wp4u.data.AuthRepository
-import com.example.wp4u.database.WP4UDatabase
+import com.example.wp4u.data.ServiceLocator
 import com.example.wp4u.ui.categories.CategoriesActivity
 import kotlinx.coroutines.launch
 
@@ -25,18 +24,17 @@ class CreateAccount : AppCompatActivity() {
         val createBtn = findViewById<Button>(R.id.createAccount)
         val signIn = findViewById<Button>(R.id.signIn)
 
-        val database = WP4UDatabase.getInstance(this)
-        val authRepository = AuthRepository(database.UserDAO())
+        // Demo 4 fix: use the ONE shared AuthRepository so the new account
+        // (with its real generated id) is the user every screen sees.
+        val authRepository = ServiceLocator.authRepository
 
         createBtn.setOnClickListener {
             val username = usernameEdt.text.toString()
             val email = emailEdt.text.toString()
             val password = passwordEdt.text.toString()
-            if (TextUtils.isEmpty(emailEdt.text.toString()) || TextUtils.isEmpty(usernameEdt.text.toString()) || TextUtils.isEmpty(
-                    passwordEdt.text.toString()
-                )
+            if (TextUtils.isEmpty(email) || TextUtils.isEmpty(username) ||
+                TextUtils.isEmpty(password)
             ) {
-
                 Toast.makeText(
                     this@CreateAccount,
                     "Please Enter Email, Username and Password",
@@ -45,7 +43,6 @@ class CreateAccount : AppCompatActivity() {
                 return@setOnClickListener
             }
             lifecycleScope.launch {
-
                 val result = authRepository.createAccount(username, email, password)
                 if (result.isSuccess) {
                     val i = Intent(this@CreateAccount, CategoriesActivity::class.java)
@@ -63,5 +60,5 @@ class CreateAccount : AppCompatActivity() {
             val intent = Intent(this@CreateAccount, Login::class.java)
             startActivity(intent)
         }
-        }
+    }
 }

@@ -6,14 +6,10 @@ import android.text.TextUtils
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.wp4u.R
-import com.example.wp4u.data.AuthRepository
-import com.example.wp4u.database.WP4UDatabase
+import com.example.wp4u.data.ServiceLocator
 import com.example.wp4u.ui.categories.CategoriesActivity
 import kotlinx.coroutines.launch
 
@@ -27,17 +23,14 @@ class Login : AppCompatActivity() {
         val loginBtn = findViewById<Button>(R.id.loginButton)
         val signUp = findViewById<Button>(R.id.signUp)
 
-        val database = WP4UDatabase.getInstance(this)
-        val authRepository = AuthRepository(database.UserDAO())
+        // Demo 4 fix: use the ONE shared AuthRepository so the signed-in
+        // user is visible to every other screen (uploads record their id).
+        val authRepository = ServiceLocator.authRepository
 
         loginBtn.setOnClickListener {
             val username = userEdt.text.toString()
             val password = pwordEdt.text.toString()
-            if (TextUtils.isEmpty(userEdt.text.toString()) || TextUtils.isEmpty(
-                    pwordEdt.text.toString()
-                )
-            ) {
-
+            if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
                 Toast.makeText(
                     this@Login,
                     "Please Enter Username and Password",
@@ -46,7 +39,6 @@ class Login : AppCompatActivity() {
                 return@setOnClickListener
             }
             lifecycleScope.launch {
-
                 val result = authRepository.signIn(username, password)
                 if (result.isSuccess) {
                     val i = Intent(this@Login, CategoriesActivity::class.java)
@@ -65,5 +57,4 @@ class Login : AppCompatActivity() {
             startActivity(intent)
         }
     }
-
 }
