@@ -4,7 +4,7 @@ import androidx.room3.ColumnInfo
 import androidx.room3.Entity
 import androidx.room3.ForeignKey
 import androidx.room3.PrimaryKey
-import java.sql.Time
+import androidx.room3.Index
 
 /**
  * Image on the vision board.
@@ -14,6 +14,7 @@ import java.sql.Time
  * (files on disk, paths in the database) and keeps the DB small and fast.
  */
 @Entity(tableName = "IMAGE",
+    indices = [Index("user_fk"), Index("category_fk")],
     foreignKeys = [
         ForeignKey(
             entity = User::class,

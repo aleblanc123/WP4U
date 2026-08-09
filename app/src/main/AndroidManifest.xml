@@ -10,7 +10,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.WP4U" >
+        android:theme="@style/Theme.WP4U"
+        android:name=".WP4UApp" >
         <activity
             android:name=".ui.accounts.Login"
             android:exported="true">
