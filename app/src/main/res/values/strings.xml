@@ -17,4 +17,5 @@
     <string name="board_image_description">Vision board image</string>
     <string name="drag_handle_glyph">≡</string>
     <string name="drag_handle_description">Drag to reorder</string>
+    <string name="welcome_message">Welcome to WP4U</string>
 </resources>

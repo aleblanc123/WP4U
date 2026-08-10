@@ -35,6 +35,10 @@
             android:name=".ui.board.BoardActivity"
             android:exported="false"
             android:parentActivityName=".ui.categories.CategoriesActivity" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
