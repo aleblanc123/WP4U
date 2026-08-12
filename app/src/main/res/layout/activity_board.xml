@@ -8,15 +8,20 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#D7E5F7"
+        android:paddingTop="30dp">
 
         <TextView
             android:id="@+id/boardTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:padding="16dp"
             android:textSize="22sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:fontFamily="@font/castoro_italic"
+            />
 
         <TextView
             android:id="@+id/emptyText"
@@ -38,9 +43,12 @@
 
         <Button
             android:id="@+id/signOut"
-            android:layout_width="match_parent"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
+            android:layout_gravity="center_horizontal"
+            app:backgroundTint="#021D4F"
+            android:fontFamily="@font/castoro_italic"
             android:text="@string/sign_out" />
 
     </LinearLayout>
@@ -51,6 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
+        app:backgroundTint="#021D4F"
         android:contentDescription="@string/add_image"
         android:src="@android:drawable/ic_input_add" />
 
