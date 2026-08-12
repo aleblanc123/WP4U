@@ -2,14 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#D7E5F7"
+    android:paddingTop="30dp">
 
     <TextView
         android:id="@+id/categoriesTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
         android:padding="16dp"
         android:text="@string/categories_title"
+        android:fontFamily="@font/castoro_italic"
+        android:textColor="#021D4F"
         android:textSize="22sp"
         android:textStyle="bold" />
 
