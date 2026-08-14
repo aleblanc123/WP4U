@@ -25,8 +25,7 @@ object ImageStorage {
     suspend fun copyToInternalStorage(context: Context, source: Uri): String? =
         withContext(Dispatchers.IO) {
             try {
-                val imagesDir = File(context.filesDir, "images").apply { mkdirs() }
-                val destination = File(imagesDir, "${UUID.randomUUID()}.jpg")
+                val destination = newImageFile(context, "jpg")
                 context.contentResolver.openInputStream(source)?.use { input ->
                     destination.outputStream().use { output ->
                         input.copyTo(output)
@@ -37,4 +36,31 @@ object ImageStorage {
                 null
             }
         }
+
+    /**
+     * Copies a bundled asset (e.g. a curated sample image under
+     * assets/seed/) into internal storage and returns the absolute path
+     * of the new file, or null if the copy failed. Demo 4: used by
+     * SampleImageSeeder when a new account is created.
+     */
+    suspend fun copyAssetToInternalStorage(context: Context, assetPath: String): String? =
+        withContext(Dispatchers.IO) {
+            try {
+                val extension = assetPath.substringAfterLast('.', "jpg")
+                val destination = newImageFile(context, extension)
+                context.assets.open(assetPath).use { input ->
+                    destination.outputStream().use { output ->
+                        input.copyTo(output)
+                    }
+                }
+                destination.absolutePath
+            } catch (e: IOException) {
+                null
+            }
+        }
+
+    private fun newImageFile(context: Context, extension: String): File {
+        val imagesDir = File(context.filesDir, "images").apply { mkdirs() }
+        return File(imagesDir, "${UUID.randomUUID()}.$extension")
+    }
 }

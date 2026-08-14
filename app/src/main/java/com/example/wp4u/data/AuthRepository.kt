@@ -4,7 +4,10 @@ import com.example.wp4u.database.model.User
 import java.security.MessageDigest
 import com.example.wp4u.database.dao.UserDAO
 
-class AuthRepository(private val userDao: UserDAO) {
+class AuthRepository(
+    private val userDao: UserDAO,
+    private val sampleImageSeeder: SampleImageSeeder
+) {
 
     var currentUser: User? = null
         private set
@@ -29,6 +32,11 @@ class AuthRepository(private val userDao: UserDAO) {
         val newId = userDao.insert(newUser)
         val created = newUser.copy(userPK = newId.toInt())
         currentUser = created
+
+        // Populate the new user's boards with the curated sample images.
+        // Best-effort: a seeding failure should never fail account creation.
+        runCatching { sampleImageSeeder.seedForUser(created.userPK) }
+
         return Result.success(created)
     }
 
