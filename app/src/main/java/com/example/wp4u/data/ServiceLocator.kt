@@ -7,24 +7,23 @@ import com.example.wp4u.database.WP4UDatabase
  * Minimal service locator so every screen shares ONE instance of each
  * repository.
  *
- * Demo 4 changes:
- *  - repository now returns the Room-backed implementation (the swap the
- *    interface was designed for; FakeBoardRepository is deleted).
- *  - authRepository added and shared. Previously each Activity constructed
- *    its own AuthRepository, so the instance that signed the user in was
- *    not the instance other screens read currentUser from - it was always
- *    null outside the login screen. One shared instance fixes that and is
- *    what lets uploads record the real signed-in user's id.
+ * Demo 4:
+ *  - repository returns the Room-backed implementation.
+ *  - authRepository is shared (one instance signs users in AND is read by
+ *    every other screen), and is wired with the SampleImageSeeder so new
+ *    accounts start with the curated sample boards.
  *
  * init() must be called once before anything else - WP4UApp does this at
  * application startup.
  */
 object ServiceLocator {
 
+    private lateinit var appContext: Context
     private lateinit var database: WP4UDatabase
 
     fun init(context: Context) {
         if (!::database.isInitialized) {
+            appContext = context.applicationContext
             database = WP4UDatabase.getInstance(context.applicationContext)
         }
     }
@@ -34,6 +33,9 @@ object ServiceLocator {
     }
 
     val authRepository: AuthRepository by lazy {
-        AuthRepository(database.UserDAO())
+        AuthRepository(
+            database.UserDAO(),
+            SampleImageSeeder(appContext, database.ImageDAO())
+        )
     }
 }
