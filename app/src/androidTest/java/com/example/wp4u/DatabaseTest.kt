@@ -254,24 +254,74 @@ class DatabaseTest {
     }
 
     //----------------- USER DAO TESTS -----------------//
+    /**
+     * Test insert user
+     *
+     * Tests inserting a new user to the USER table.
+     */
     @Test
-    fun insertUser_test() {
-        TODO("Not yet implemented")
+    fun insertUser_test() = runBlocking {
+        // sample data
+       val testUser = User(500000, "d3rIk", "derick3@email.com",
+           "pw123", 1212)
+        userDAO.insertUser(testUser)
+
+        val insertedTestUser = userDAO.getUserByUserPass("d3rIk", "pw123")
+
+        assertNotNull("test new image insertion", insertedTestUser) // tests successful insertion
+        assertEquals("New user was not successfully inserted.",
+            "d3rIk", insertedTestUser?.username) // tests expected inserted values
     }
 
+    /**
+     * Test get user (by username, password)
+     *
+     * Tests selecting a pre-existing user from the IMAGE table (by username, password pair).
+     */
     @Test
-    fun getUserByUserPass_test() {
-        TODO("Not yet implemented")
+    fun getUserByUserPass_test() = runBlocking {
+        // sample data
+        val testUser = User(500000, "d3rIk", "derick3@email.com",
+            "pw123", 1212)
+        userDAO.insertUser(testUser)
+
+        val selectedUser = userDAO.getUserByUserPass("d3rIk", "pw123")
+        assertEquals("User was not successfully selected by username and password.",
+            500000, selectedUser?.userPK) // tests expected inserted values
     }
 
+    /**
+     * Test get user (by email, password)
+     *
+     * Tests selecting a pre-existing user from the IMAGE table (by email, password pair).
+     */
     @Test
-    fun getUserByEmailPass_test() {
-        TODO("Not yet implemented")
+    fun getUserByEmailPass_test() = runBlocking {
+        // sample data
+        val testUser = User(500000, "d3rIk", "derick3@email.com",
+            "pw123", 1212)
+        userDAO.insertUser(testUser)
+
+        val selectedUser = userDAO.getUserByEmailPass("derick3@email.com", "pw123")
+        assertEquals("User was not successfully selected by email and password.",
+            500000, selectedUser?.userPK) // tests expected inserted values
     }
 
+    /**
+     * Test if email exists (by email)
+     *
+     * Tests checking whether a user is already using an email in the IMAGE table (by email).
+     */
     @Test
-    fun checkIfEmailExists_test() {
-        TODO("Not yet implemented")
+    fun checkIfEmailExists_test() = runBlocking {
+        // sample data
+        val testUser = User(500000, "bootsncats", "bootsncats@email.com",
+            "pw321", 2010)
+        userDAO.insertUser(testUser)
+
+        val emailCheckUser = userDAO.checkIfEmailExists("bootsncats@email.com")
+        assertEquals("Check for email existing was not as expected.",
+            "bootsncats@email.com", emailCheckUser?.email)
     }
 
     @After
