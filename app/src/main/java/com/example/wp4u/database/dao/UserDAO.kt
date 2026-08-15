@@ -3,8 +3,6 @@ package com.example.wp4u.database.dao
 import com.example.wp4u.database.model.User
 import androidx.room3.Dao
 import androidx.room3.Insert
-import androidx.room3.Update
-import androidx.room3.Delete
 import androidx.room3.OnConflictStrategy
 import androidx.room3.Query
 
@@ -16,17 +14,8 @@ import androidx.room3.Query
 
 @Dao
 interface UserDAO {
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertUser(user: User): Long //Adds newly created user account.
-
-    @Update
-    suspend fun updateUser(user: User) //Updates pre-existing user account.
-
-    @Delete
-    suspend fun deleteUser(user: User) //Deletes a user account.
-
-    @Query("SELECT * FROM USER WHERE userPK=:id")
-    suspend fun getUserById(id: Int): User? //Gets single user account (by id).
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    suspend fun insertUser(user: User): Long //Adds newly created user account
 
     @Query("SELECT * FROM USER WHERE username=:username AND password_hash=:passwordHash")
     suspend fun getUserByUserPass(username: String, passwordHash: String): User? //Gets single user account (by username and password).
@@ -36,7 +25,4 @@ interface UserDAO {
 
     @Query("Select * FROM USER WHERE email=:email")
     suspend fun checkIfEmailExists(email: String): User? //Checks if email is already registered to account in database
-
-    @Insert(onConflict = OnConflictStrategy.ABORT)
-    suspend fun insert(user: User): Long
 }

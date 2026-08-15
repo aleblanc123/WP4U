@@ -29,7 +29,7 @@ class AuthRepository(
         // returned row id was discarded, so currentUser kept userPK = 0 and
         // any image insert for a brand-new account would violate the
         // IMAGE -> USER foreign key.
-        val newId = userDao.insert(newUser)
+        val newId = userDao.insertUser(newUser)
         val created = newUser.copy(userPK = newId.toInt())
         currentUser = created
 
