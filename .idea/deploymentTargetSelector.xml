@@ -13,7 +13,7 @@
         </DropdownSelection>
         <DialogSelection />
       </SelectionState>
-      <SelectionState runConfigName="insertCategory_test()">
+      <SelectionState runConfigName="bulkUpdateImages_test()">
         <option name="selectionMode" value="DROPDOWN" />
         <DropdownSelection timestamp="2026-08-10T00:01:09.269137200Z">
           <Target type="DEFAULT_BOOT">
@@ -24,7 +24,7 @@
         </DropdownSelection>
         <DialogSelection />
       </SelectionState>
-      <SelectionState runConfigName="getDBInstance_test()">
+      <SelectionState runConfigName="deleteImage_test()">
         <option name="selectionMode" value="DROPDOWN" />
         <DropdownSelection timestamp="2026-08-10T00:01:09.269137200Z">
           <Target type="DEFAULT_BOOT">
@@ -35,7 +35,7 @@
         </DropdownSelection>
         <DialogSelection />
       </SelectionState>
-      <SelectionState runConfigName="getAllCategories_test()">
+      <SelectionState runConfigName="getImageById_test()">
         <option name="selectionMode" value="DROPDOWN" />
         <DropdownSelection timestamp="2026-08-10T00:01:09.269137200Z">
           <Target type="DEFAULT_BOOT">
@@ -46,7 +46,7 @@
         </DropdownSelection>
         <DialogSelection />
       </SelectionState>
-      <SelectionState runConfigName="getCategoriesLive_test()">
+      <SelectionState runConfigName="getImagesForCategory_test()">
         <option name="selectionMode" value="DROPDOWN" />
         <DropdownSelection timestamp="2026-08-10T00:01:09.269137200Z">
           <Target type="DEFAULT_BOOT">
@@ -57,7 +57,7 @@
         </DropdownSelection>
         <DialogSelection />
       </SelectionState>
-      <SelectionState runConfigName="insertImage_test()">
+      <SelectionState runConfigName="getMaxDisplayOrder_test()">
         <option name="selectionMode" value="DROPDOWN" />
         <DropdownSelection timestamp="2026-08-10T00:01:09.269137200Z">
           <Target type="DEFAULT_BOOT">
